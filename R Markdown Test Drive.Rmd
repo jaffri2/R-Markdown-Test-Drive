@@ -1,10 +1,16 @@
 ---
 title: "R Markdown Test Drive"
+<<<<<<< HEAD
 output: 
   html_document: 
     keep_md: yes
 date: '2022-07-12'
 output: github_document 
+=======
+output: html_document
+date: '2022-07-12'
+---
+>>>>>>> main
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
