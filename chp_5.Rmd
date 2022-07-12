@@ -1,0 +1,29 @@
+---
+title: "Learning R and R Markdown"
+author: "Heena Jaffri"
+date: '2022-07-12'
+output: 
+  html_document: 
+    keep_md: yes
+---
+MARIA MARIA
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(gapminder)
+str(gapminder)
+```
+
+```{r}
+library(tidyverse)
+```
+```{r}
+head(gapminder$lifeExp)
+hist(gapminder$lifeExp)
+```
+```{r}
+table(gapminder$continent)
+```
+
