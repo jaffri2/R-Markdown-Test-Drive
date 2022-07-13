@@ -6,24 +6,83 @@ output:
   html_document: 
     keep_md: yes
 ---
-MARIA MARIA
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
 library(gapminder)
+library(tidyverse)
+library(lubridate)
+
+```
+
+
+```{r}
 str(gapminder)
+head(gapminder$lifeExp)
+hist(gapminder$lifeExp)
+table(gapminder$continent)
 ```
 
 ```{r}
-library(tidyverse)
+gapminder
+gapminder %>% head()
 ```
 ```{r}
-head(gapminder$lifeExp)
-hist(gapminder$lifeExp)
+select(gapminder, year, lifeExp)
+#with pipe
+
+gapminder %>% 
+  select(year, lifeExp) %>% 
+  head(4)
+
+
+```
+CH 7: Single Table dplyr Functions
+
+```{r}
+(my_gap <- gapminder)
+my_gap %>% filter(country=="Canada")
+my_precious <- my_gap %>% filter(country=="Canada")
+```
+
+
+
+```{r}
+my_gap %>% mutate(gdp = pop * gdpPercap)
+
+ctib <- my_gap %>% 
+  filter(country=="Canada")
+
+my_gap <- my_gap %>% 
+  mutate(tmp=rep(ctib$gdpPercap, nlevels(country)), #mutate builds things sequentially so you can refer to earlier ones. setting a variable to null gets rid of it
+ gdpPercapRel = gdpPercap/tmp,
+ tmp=NULL)
 ```
 ```{r}
-table(gapminder$continent)
+my_gap %>% 
+  filter(country=="Canada") %>% 
+  select(country,year,gdpPercapRel)
 ```
+```{r}
+summary(my_gap$gdpPercapRel)
+```
+
+```{r}
+my_gap %>% 
+  arrange(year,country)
+
+```
+```{r}
+my_gap %>% 
+  filter(year==2007) %>% 
+  arrange(desc(lifeExp))
+```
+```{r}
+today()
+```
+
+
 
